@@ -7,7 +7,7 @@ async function verifyTicketAndEnrollment(ticketId: number, userId: number) {
   const ticket = await ticketRepository.findTickeyById(ticketId);
 
   if (!ticket) {
-    throw notFoundError();
+    throw notFoundError("Ticket");
   }
   const enrollment = await enrollmentRepository.findById(ticket.enrollmentId);
 
@@ -22,7 +22,7 @@ async function getPaymentByTicketId(userId: number, ticketId: number) {
   const payment = await paymentRepository.findPaymentByTicketId(ticketId);
 
   if (!payment) {
-    throw notFoundError();
+    throw notFoundError("Payment");
   }
   return payment;
 }
@@ -47,12 +47,12 @@ async function paymentProcess(ticketId: number, userId: number, cardData: CardPa
 }
 
 export type CardPaymentParams = {
-  issuer: string,
-  number: number,
-  name: string,
-  expirationDate: Date,
-  cvv: number
-}
+  issuer: string;
+  number: number;
+  name: string;
+  expirationDate: Date;
+  cvv: number;
+};
 
 const paymentService = {
   getPaymentByTicketId,
