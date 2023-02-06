@@ -19,7 +19,7 @@ async function checkIfUserHasAPaidTicketIncludingHotel(userId: number) {
 }
 
 async function getAllHotels(userId: number) {
-  checkIfUserHasAPaidTicketIncludingHotel(userId);
+  await checkIfUserHasAPaidTicketIncludingHotel(userId);
 
   const hotels = await hotelRepository.findAllHotels();
 
@@ -29,7 +29,7 @@ async function getAllHotels(userId: number) {
 }
 
 async function getRoomsByHotelId(userId: number, hotelId: number) {
-  checkIfUserHasAPaidTicketIncludingHotel(userId);
+  await checkIfUserHasAPaidTicketIncludingHotel(userId);
 
   const hotelWithRooms = await hotelRepository.findHotelByIdWithRooms(hotelId);
 
